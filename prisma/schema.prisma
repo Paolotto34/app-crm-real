@@ -1,0 +1,4932 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider          = "postgresql"
+  url               = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+}
+
+model Scalars {
+  ID     String @id
+  output String
+}
+
+model Audit {
+  action       String
+  changes      String
+  createdAt    String
+  id           String  @id
+  targetEntity String
+  targetId     String
+  updatedAt    String
+  user         String?
+}
+
+model AuditChange {
+  id    String  @id @default(uuid())
+  field String
+  from  String?
+  to    String?
+}
+
+model AuditConnection {
+  id         String @id @default(uuid())
+  nodes      String
+  pageInfo   String
+  totalCount String
+}
+
+model AuditDeleteResponse {
+  action       String?
+  changes      String?
+  createdAt    String?
+  id           String  @id
+  targetEntity String?
+  targetId     String?
+  updatedAt    String?
+}
+
+model AuditFilter {
+  action       String?
+  and          String?
+  createdAt    String?
+  id           String  @id
+  or           String?
+  targetEntity String?
+  targetId     String?
+  updatedAt    String?
+  user         String?
+}
+
+model AuditFilterUserFilter {
+  and       String?
+  createdAt String?
+  email     String?
+  id        String  @id
+  jobTitle  String?
+  name      String?
+  or        String?
+  phone     String?
+  role      String?
+  timezone  String?
+  updatedAt String?
+}
+
+model AuditSort {
+  id        String  @id @default(uuid())
+  direction String
+  field     String
+  nulls     String?
+}
+
+model AuditSubscriptionFilter {
+  action       String?
+  and          String?
+  createdAt    String?
+  id           String  @id
+  or           String?
+  targetEntity String?
+  targetId     String?
+  updatedAt    String?
+}
+
+model AuthResponse {
+  id           String @id @default(uuid())
+  accessToken  String
+  refreshToken String
+  user         String
+}
+
+model BooleanFieldComparison {
+  id    String  @id @default(uuid())
+  is    String?
+  isNot String?
+}
+
+model CheckListItem {
+  id      String @id @default(uuid())
+  checked String
+  title   String
+}
+
+model ChecklistItemInput {
+  id      String @id @default(uuid())
+  checked String
+  title   String
+}
+
+model Company {
+  avatarUrl         String?
+  businessType      String?
+  companySize       String?
+  contacts          String
+  contactsAggregate String
+  country           String?
+  createdAt         String
+  createdBy         String
+  deals             String
+  dealsAggregate    String
+  id                String  @id
+  industry          String?
+  name              String
+  notes             String
+  notesAggregate    String
+  salesOwner        String
+  totalRevenue      String?
+  updatedAt         String
+  updatedBy         String?
+  website           String?
+}
+
+model CompanyContactsArgs {
+  id      String  @id @default(uuid())
+  filter  String?
+  paging  String?
+  sorting String?
+}
+
+model CompanyContactsAggregateArgs {
+  id     String  @id @default(uuid())
+  filter String?
+}
+
+model CompanyDealsArgs {
+  id      String  @id @default(uuid())
+  filter  String?
+  paging  String?
+  sorting String?
+}
+
+model CompanyDealsAggregateArgs {
+  id     String  @id @default(uuid())
+  filter String?
+}
+
+model CompanyNotesArgs {
+  id      String  @id @default(uuid())
+  filter  String?
+  paging  String?
+  sorting String?
+}
+
+model CompanyNotesAggregateArgs {
+  id     String  @id @default(uuid())
+  filter String?
+}
+
+model CompanyAggregateFilter {
+  and          String?
+  businessType String?
+  companySize  String?
+  country      String?
+  createdAt    String?
+  id           String  @id
+  industry     String?
+  name         String?
+  or           String?
+  totalRevenue String?
+  updatedAt    String?
+  website      String?
+}
+
+model CompanyAggregateGroupBy {
+  businessType String?
+  companySize  String?
+  country      String?
+  createdAt    String?
+  id           String  @id
+  industry     String?
+  name         String?
+  totalRevenue String?
+  updatedAt    String?
+  website      String?
+}
+
+model CompanyAggregateGroupByCreatedAtArgs {
+  id String  @id @default(uuid())
+  by String?
+}
+
+model CompanyAggregateGroupByUpdatedAtArgs {
+  id String  @id @default(uuid())
+  by String?
+}
+
+model CompanyAggregateResponse {
+  id      String  @id @default(uuid())
+  avg     String?
+  count   String?
+  groupBy String?
+  max     String?
+  min     String?
+  sum     String?
+}
+
+model CompanyAvgAggregate {
+  id           String  @id
+  totalRevenue String?
+}
+
+model CompanyBusinessTypeFilterComparison {
+  id    String  @id @default(uuid())
+  eq    String?
+  in    String?
+  neq   String?
+  notIn String?
+}
+
+model CompanyCompanySizeFilterComparison {
+  id    String  @id @default(uuid())
+  eq    String?
+  in    String?
+  neq   String?
+  notIn String?
+}
+
+model CompanyConnection {
+  id         String @id @default(uuid())
+  nodes      String
+  pageInfo   String
+  totalCount String
+}
+
+model CompanyContactsAggregateGroupBy {
+  createdAt String?
+  email     String?
+  id        String  @id
+  jobTitle  String?
+  name      String?
+  phone     String?
+  score     String?
+  stage     String?
+  status    String?
+  timezone  String?
+  updatedAt String?
+}
+
+model CompanyContactsAggregateResponse {
+  id      String  @id @default(uuid())
+  avg     String?
+  count   String?
+  groupBy String?
+  max     String?
+  min     String?
+  sum     String?
+}
+
+model CompanyContactsAvgAggregate {
+  id    String  @id
+  score String?
+}
+
+model CompanyContactsConnection {
+  id         String @id @default(uuid())
+  nodes      String
+  pageInfo   String
+  totalCount String
+}
+
+model CompanyContactsCountAggregate {
+  createdAt String?
+  email     String?
+  id        String  @id
+  jobTitle  String?
+  name      String?
+  phone     String?
+  score     String?
+  stage     String?
+  status    String?
+  timezone  String?
+  updatedAt String?
+}
+
+model CompanyContactsMaxAggregate {
+  createdAt String?
+  email     String?
+  id        String  @id
+  jobTitle  String?
+  name      String?
+  phone     String?
+  score     String?
+  stage     String?
+  status    String?
+  timezone  String?
+  updatedAt String?
+}
+
+model CompanyContactsMinAggregate {
+  createdAt String?
+  email     String?
+  id        String  @id
+  jobTitle  String?
+  name      String?
+  phone     String?
+  score     String?
+  stage     String?
+  status    String?
+  timezone  String?
+  updatedAt String?
+}
+
+model CompanyContactsSumAggregate {
+  id    String  @id
+  score String?
+}
+
+model CompanyCountAggregate {
+  businessType String?
+  companySize  String?
+  country      String?
+  createdAt    String?
+  id           String  @id
+  industry     String?
+  name         String?
+  totalRevenue String?
+  updatedAt    String?
+  website      String?
+}
+
+model CompanyCreateInput {
+  id           String  @id @default(uuid())
+  businessType String?
+  companySize  String?
+  country      String?
+  industry     String?
+  name         String
+  salesOwnerId String
+  totalRevenue String?
+  website      String?
+}
+
+model CompanyDealsAggregateGroupBy {
+  closeDateDay   String?
+  closeDateMonth String?
+  closeDateYear  String?
+  companyId      String?
+  createdAt      String?
+  dealOwnerId    String?
+  id             String  @id
+  stageId        String?
+  title          String?
+  updatedAt      String?
+  value          String?
+}
+
+model CompanyDealsAggregateResponse {
+  id      String  @id @default(uuid())
+  avg     String?
+  count   String?
+  groupBy String?
+  max     String?
+  min     String?
+  sum     String?
+}
+
+model CompanyDealsAvgAggregate {
+  closeDateDay   String?
+  closeDateMonth String?
+  closeDateYear  String?
+  companyId      String?
+  dealOwnerId    String?
+  id             String  @id
+  stageId        String?
+  value          String?
+}
+
+model CompanyDealsConnection {
+  id         String @id @default(uuid())
+  nodes      String
+  pageInfo   String
+  totalCount String
+}
+
+model CompanyDealsCountAggregate {
+  closeDateDay   String?
+  closeDateMonth String?
+  closeDateYear  String?
+  companyId      String?
+  createdAt      String?
+  dealOwnerId    String?
+  id             String  @id
+  stageId        String?
+  title          String?
+  updatedAt      String?
+  value          String?
+}
+
+model CompanyDealsMaxAggregate {
+  closeDateDay   String?
+  closeDateMonth String?
+  closeDateYear  String?
+  companyId      String?
+  createdAt      String?
+  dealOwnerId    String?
+  id             String  @id
+  stageId        String?
+  title          String?
+  updatedAt      String?
+  value          String?
+}
+
+model CompanyDealsMinAggregate {
+  closeDateDay   String?
+  closeDateMonth String?
+  closeDateYear  String?
+  companyId      String?
+  createdAt      String?
+  dealOwnerId    String?
+  id             String  @id
+  stageId        String?
+  title          String?
+  updatedAt      String?
+  value          String?
+}
+
+model CompanyDealsSumAggregate {
+  closeDateDay   String?
+  closeDateMonth String?
+  closeDateYear  String?
+  companyId      String?
+  dealOwnerId    String?
+  id             String  @id
+  stageId        String?
+  value          String?
+}
+
+model CompanyDeleteFilter {
+  and          String?
+  businessType String?
+  companySize  String?
+  country      String?
+  createdAt    String?
+  id           String  @id
+  industry     String?
+  name         String?
+  or           String?
+  totalRevenue String?
+  updatedAt    String?
+  website      String?
+}
+
+model CompanyDeleteResponse {
+  avatarUrl    String?
+  businessType String?
+  companySize  String?
+  country      String?
+  createdAt    String?
+  id           String  @id
+  industry     String?
+  name         String?
+  totalRevenue String?
+  updatedAt    String?
+  website      String?
+}
+
+model CompanyFilter {
+  and          String?
+  businessType String?
+  companySize  String?
+  contacts     String?
+  country      String?
+  createdAt    String?
+  createdBy    String?
+  deals        String?
+  id           String  @id
+  industry     String?
+  name         String?
+  notes        String?
+  or           String?
+  salesOwner   String?
+  totalRevenue String?
+  updatedAt    String?
+  updatedBy    String?
+  website      String?
+}
+
+model CompanyFilterCompanyNoteFilter {
+  and       String?
+  createdAt String?
+  id        String  @id
+  or        String?
+  updatedAt String?
+}
+
+model CompanyFilterContactFilter {
+  and       String?
+  createdAt String?
+  email     String?
+  id        String  @id
+  jobTitle  String?
+  name      String?
+  or        String?
+  phone     String?
+  score     String?
+  stage     String?
+  status    String?
+  timezone  String?
+  updatedAt String?
+}
+
+model CompanyFilterDealFilter {
+  and            String?
+  closeDateDay   String?
+  closeDateMonth String?
+  closeDateYear  String?
+  companyId      String?
+  createdAt      String?
+  dealOwnerId    String?
+  id             String  @id
+  or             String?
+  stageId        String?
+  title          String?
+  updatedAt      String?
+  value          String?
+}
+
+model CompanyFilterUserFilter {
+  and       String?
+  createdAt String?
+  email     String?
+  id        String  @id
+  jobTitle  String?
+  name      String?
+  or        String?
+  phone     String?
+  role      String?
+  timezone  String?
+  updatedAt String?
+}
+
+model CompanyIndustryFilterComparison {
+  id    String  @id @default(uuid())
+  eq    String?
+  in    String?
+  neq   String?
+  notIn String?
+}
+
+model CompanyMaxAggregate {
+  businessType String?
+  companySize  String?
+  country      String?
+  createdAt    String?
+  id           String  @id
+  industry     String?
+  name         String?
+  totalRevenue String?
+  updatedAt    String?
+  website      String?
+}
+
+model CompanyMinAggregate {
+  businessType String?
+  companySize  String?
+  country      String?
+  createdAt    String?
+  id           String  @id
+  industry     String?
+  name         String?
+  totalRevenue String?
+  updatedAt    String?
+  website      String?
+}
+
+model CompanyNote {
+  company   String
+  createdAt String
+  createdBy String
+  id        String  @id
+  note      String
+  updatedAt String
+  updatedBy String?
+}
+
+model CompanyNoteAggregateFilter {
+  and       String?
+  createdAt String?
+  id        String  @id
+  or        String?
+  updatedAt String?
+}
+
+model CompanyNoteConnection {
+  id         String @id @default(uuid())
+  nodes      String
+  pageInfo   String
+  totalCount String
+}
+
+model CompanyNoteCreateInput {
+  id        String @id @default(uuid())
+  companyId String
+  note      String
+}
+
+model CompanyNoteDeleteFilter {
+  and       String?
+  createdAt String?
+  id        String  @id
+  or        String?
+  updatedAt String?
+}
+
+model CompanyNoteDeleteResponse {
+  createdAt String?
+  id        String  @id
+  note      String?
+  updatedAt String?
+}
+
+model CompanyNoteFilter {
+  and       String?
+  company   String?
+  createdAt String?
+  createdBy String?
+  id        String  @id
+  or        String?
+  updatedAt String?
+  updatedBy String?
+}
+
+model CompanyNoteFilterCompanyFilter {
+  and          String?
+  businessType String?
+  companySize  String?
+  country      String?
+  createdAt    String?
+  id           String  @id
+  industry     String?
+  name         String?
+  or           String?
+  totalRevenue String?
+  updatedAt    String?
+  website      String?
+}
+
+model CompanyNoteFilterUserFilter {
+  and       String?
+  createdAt String?
+  email     String?
+  id        String  @id
+  jobTitle  String?
+  name      String?
+  or        String?
+  phone     String?
+  role      String?
+  timezone  String?
+  updatedAt String?
+}
+
+model CompanyNoteSort {
+  id        String  @id @default(uuid())
+  direction String
+  field     String
+  nulls     String?
+}
+
+model CompanyNoteSubscriptionFilter {
+  and       String?
+  createdAt String?
+  id        String  @id
+  or        String?
+  updatedAt String?
+}
+
+model CompanyNoteUpdateFilter {
+  and       String?
+  createdAt String?
+  id        String  @id
+  or        String?
+  updatedAt String?
+}
+
+model CompanyNoteUpdateInput {
+  id   String @id @default(uuid())
+  note String
+}
+
+model CompanyNotesAggregateGroupBy {
+  createdAt String?
+  id        String  @id
+  updatedAt String?
+}
+
+model CompanyNotesAggregateResponse {
+  id      String  @id @default(uuid())
+  avg     String?
+  count   String?
+  groupBy String?
+  max     String?
+  min     String?
+  sum     String?
+}
+
+model CompanyNotesAvgAggregate {
+  id String @id
+}
+
+model CompanyNotesConnection {
+  id         String @id @default(uuid())
+  nodes      String
+  pageInfo   String
+  totalCount String
+}
+
+model CompanyNotesCountAggregate {
+  createdAt String?
+  id        String  @id
+  updatedAt String?
+}
+
+model CompanyNotesMaxAggregate {
+  createdAt String?
+  id        String  @id
+  updatedAt String?
+}
+
+model CompanyNotesMinAggregate {
+  createdAt String?
+  id        String  @id
+  updatedAt String?
+}
+
+model CompanyNotesSumAggregate {
+  id String @id
+}
+
+model CompanySort {
+  id        String  @id @default(uuid())
+  direction String
+  field     String
+  nulls     String?
+}
+
+model CompanySubscriptionFilter {
+  and          String?
+  businessType String?
+  companySize  String?
+  country      String?
+  createdAt    String?
+  id           String  @id
+  industry     String?
+  name         String?
+  or           String?
+  totalRevenue String?
+  updatedAt    String?
+  website      String?
+}
+
+model CompanySumAggregate {
+  id           String  @id
+  totalRevenue String?
+}
+
+model CompanyUpdateFilter {
+  and          String?
+  businessType String?
+  companySize  String?
+  country      String?
+  createdAt    String?
+  id           String  @id
+  industry     String?
+  name         String?
+  or           String?
+  totalRevenue String?
+  updatedAt    String?
+  website      String?
+}
+
+model CompanyUpdateInput {
+  id           String  @id @default(uuid())
+  businessType String?
+  companySize  String?
+  country      String?
+  industry     String?
+  name         String?
+  salesOwnerId String?
+  totalRevenue String?
+  website      String?
+}
+
+model Contact {
+  avatarUrl  String?
+  company    String
+  createdAt  String
+  createdBy  String
+  deals      String
+  email      String
+  id         String  @id
+  jobTitle   String?
+  name       String
+  notes      String
+  phone      String?
+  salesOwner String
+  score      String?
+  stage      String
+  status     String
+  timezone   String?
+  updatedAt  String
+  updatedBy  String?
+}
+
+model ContactDealsArgs {
+  id      String  @id @default(uuid())
+  filter  String?
+  paging  String?
+  sorting String?
+}
+
+model ContactNotesArgs {
+  id      String  @id @default(uuid())
+  filter  String?
+  paging  String?
+  sorting String?
+}
+
+model ContactAggregateFilter {
+  and       String?
+  createdAt String?
+  email     String?
+  id        String  @id
+  jobTitle  String?
+  name      String?
+  or        String?
+  phone     String?
+  score     String?
+  stage     String?
+  status    String?
+  timezone  String?
+  updatedAt String?
+}
+
+model ContactConnection {
+  id         String @id @default(uuid())
+  nodes      String
+  pageInfo   String
+  totalCount String
+}
+
+model ContactCreateInput {
+  id           String  @id @default(uuid())
+  companyId    String
+  email        String
+  jobTitle     String?
+  name         String
+  phone        String?
+  salesOwnerId String
+  score        String?
+  stage        String?
+  status       String?
+  timezone     String?
+}
+
+model ContactDealsConnection {
+  id         String @id @default(uuid())
+  nodes      String
+  pageInfo   String
+  totalCount String
+}
+
+model ContactDeleteFilter {
+  and       String?
+  createdAt String?
+  email     String?
+  id        String  @id
+  jobTitle  String?
+  name      String?
+  or        String?
+  phone     String?
+  score     String?
+  stage     String?
+  status    String?
+  timezone  String?
+  updatedAt String?
+}
+
+model ContactDeleteResponse {
+  avatarUrl String?
+  createdAt String?
+  email     String?
+  id        String  @id
+  jobTitle  String?
+  name      String?
+  phone     String?
+  score     String?
+  stage     String?
+  status    String?
+  timezone  String?
+  updatedAt String?
+}
+
+model ContactFilter {
+  and        String?
+  company    String?
+  createdAt  String?
+  createdBy  String?
+  deals      String?
+  email      String?
+  id         String  @id
+  jobTitle   String?
+  name       String?
+  notes      String?
+  or         String?
+  phone      String?
+  salesOwner String?
+  score      String?
+  stage      String?
+  status     String?
+  timezone   String?
+  updatedAt  String?
+  updatedBy  String?
+}
+
+model ContactFilterCompanyFilter {
+  and          String?
+  businessType String?
+  companySize  String?
+  country      String?
+  createdAt    String?
+  id           String  @id
+  industry     String?
+  name         String?
+  or           String?
+  totalRevenue String?
+  updatedAt    String?
+  website      String?
+}
+
+model ContactFilterContactNoteFilter {
+  and       String?
+  createdAt String?
+  id        String  @id
+  or        String?
+  updatedAt String?
+}
+
+model ContactFilterDealFilter {
+  and            String?
+  closeDateDay   String?
+  closeDateMonth String?
+  closeDateYear  String?
+  companyId      String?
+  createdAt      String?
+  dealOwnerId    String?
+  id             String  @id
+  or             String?
+  stageId        String?
+  title          String?
+  updatedAt      String?
+  value          String?
+}
+
+model ContactFilterUserFilter {
+  and       String?
+  createdAt String?
+  email     String?
+  id        String  @id
+  jobTitle  String?
+  name      String?
+  or        String?
+  phone     String?
+  role      String?
+  timezone  String?
+  updatedAt String?
+}
+
+model ContactNote {
+  contact   String
+  createdAt String
+  createdBy String
+  id        String  @id
+  note      String
+  updatedAt String
+  updatedBy String?
+}
+
+model ContactNoteConnection {
+  id         String @id @default(uuid())
+  nodes      String
+  pageInfo   String
+  totalCount String
+}
+
+model ContactNoteCreateInput {
+  id        String @id @default(uuid())
+  contactId String
+  note      String
+}
+
+model ContactNoteDeleteFilter {
+  and       String?
+  createdAt String?
+  id        String  @id
+  or        String?
+  updatedAt String?
+}
+
+model ContactNoteDeleteResponse {
+  createdAt String?
+  id        String  @id
+  note      String?
+  updatedAt String?
+}
+
+model ContactNoteFilter {
+  and       String?
+  contact   String?
+  createdAt String?
+  createdBy String?
+  id        String  @id
+  or        String?
+  updatedAt String?
+  updatedBy String?
+}
+
+model ContactNoteFilterContactFilter {
+  and       String?
+  createdAt String?
+  email     String?
+  id        String  @id
+  jobTitle  String?
+  name      String?
+  or        String?
+  phone     String?
+  score     String?
+  stage     String?
+  status    String?
+  timezone  String?
+  updatedAt String?
+}
+
+model ContactNoteFilterUserFilter {
+  and       String?
+  createdAt String?
+  email     String?
+  id        String  @id
+  jobTitle  String?
+  name      String?
+  or        String?
+  phone     String?
+  role      String?
+  timezone  String?
+  updatedAt String?
+}
+
+model ContactNoteSort {
+  id        String  @id @default(uuid())
+  direction String
+  field     String
+  nulls     String?
+}
+
+model ContactNoteSubscriptionFilter {
+  and       String?
+  createdAt String?
+  id        String  @id
+  or        String?
+  updatedAt String?
+}
+
+model ContactNoteUpdateFilter {
+  and       String?
+  createdAt String?
+  id        String  @id
+  or        String?
+  updatedAt String?
+}
+
+model ContactNoteUpdateInput {
+  id   String @id @default(uuid())
+  note String
+}
+
+model ContactNotesConnection {
+  id         String @id @default(uuid())
+  nodes      String
+  pageInfo   String
+  totalCount String
+}
+
+model ContactSort {
+  id        String  @id @default(uuid())
+  direction String
+  field     String
+  nulls     String?
+}
+
+model ContactStageFilterComparison {
+  id       String  @id @default(uuid())
+  eq       String?
+  gt       String?
+  gte      String?
+  iLike    String?
+  in       String?
+  is       String?
+  isNot    String?
+  like     String?
+  lt       String?
+  lte      String?
+  neq      String?
+  notILike String?
+  notIn    String?
+  notLike  String?
+}
+
+model ContactStatusFilterComparison {
+  id       String  @id @default(uuid())
+  eq       String?
+  gt       String?
+  gte      String?
+  iLike    String?
+  in       String?
+  is       String?
+  isNot    String?
+  like     String?
+  lt       String?
+  lte      String?
+  neq      String?
+  notILike String?
+  notIn    String?
+  notLike  String?
+}
+
+model ContactSubscriptionFilter {
+  and       String?
+  createdAt String?
+  email     String?
+  id        String  @id
+  jobTitle  String?
+  name      String?
+  or        String?
+  phone     String?
+  score     String?
+  stage     String?
+  status    String?
+  timezone  String?
+  updatedAt String?
+}
+
+model ContactUpdateFilter {
+  and       String?
+  createdAt String?
+  email     String?
+  id        String  @id
+  jobTitle  String?
+  name      String?
+  or        String?
+  phone     String?
+  score     String?
+  stage     String?
+  status    String?
+  timezone  String?
+  updatedAt String?
+}
+
+model ContactUpdateInput {
+  id           String  @id @default(uuid())
+  companyId    String?
+  email        String?
+  jobTitle     String?
+  name         String?
+  phone        String?
+  salesOwnerId String?
+  score        String?
+  stage        String?
+  status       String?
+  timezone     String?
+}
+
+model CreateAuditSubscriptionFilterInput {
+  id     String @id @default(uuid())
+  filter String
+}
+
+model CreateCompanyNoteSubscriptionFilterInput {
+  id     String @id @default(uuid())
+  filter String
+}
+
+model CreateCompanySubscriptionFilterInput {
+  id     String @id @default(uuid())
+  filter String
+}
+
+model CreateContactNoteSubscriptionFilterInput {
+  id     String @id @default(uuid())
+  filter String
+}
+
+model CreateContactSubscriptionFilterInput {
+  id     String @id @default(uuid())
+  filter String
+}
+
+model CreateDealStageSubscriptionFilterInput {
+  id     String @id @default(uuid())
+  filter String
+}
+
+model CreateDealSubscriptionFilterInput {
+  id     String @id @default(uuid())
+  filter String
+}
+
+model CreateEventCategorySubscriptionFilterInput {
+  id     String @id @default(uuid())
+  filter String
+}
+
+model CreateEventSubscriptionFilterInput {
+  id     String @id @default(uuid())
+  filter String
+}
+
+model CreateManyCompaniesInput {
+  id        String @id @default(uuid())
+  companies String
+}
+
+model CreateManyCompanyNotesInput {
+  id           String @id @default(uuid())
+  companyNotes String
+}
+
+model CreateManyContactNotesInput {
+  id           String @id @default(uuid())
+  contactNotes String
+}
+
+model CreateManyContactsInput {
+  id       String @id @default(uuid())
+  contacts String
+}
+
+model CreateManyDealStagesInput {
+  id         String @id @default(uuid())
+  dealStages String
+}
+
+model CreateManyDealsInput {
+  id    String @id @default(uuid())
+  deals String
+}
+
+model CreateManyEventCategoriesInput {
+  id              String @id @default(uuid())
+  eventCategories String
+}
+
+model CreateManyEventsInput {
+  id     String @id @default(uuid())
+  events String
+}
+
+model CreateManyQuotesInput {
+  id     String @id @default(uuid())
+  quotes String
+}
+
+model CreateManyTaskCommentsInput {
+  id           String @id @default(uuid())
+  taskComments String
+}
+
+model CreateManyTaskStagesInput {
+  id         String @id @default(uuid())
+  taskStages String
+}
+
+model CreateManyTasksInput {
+  id    String @id @default(uuid())
+  tasks String
+}
+
+model CreateManyUsersInput {
+  id    String @id @default(uuid())
+  users String
+}
+
+model CreateOneCompanyInput {
+  id      String @id @default(uuid())
+  company String
+}
+
+model CreateOneCompanyNoteInput {
+  id          String @id @default(uuid())
+  companyNote String
+}
+
+model CreateOneContactInput {
+  id      String @id @default(uuid())
+  contact String
+}
+
+model CreateOneContactNoteInput {
+  id          String @id @default(uuid())
+  contactNote String
+}
+
+model CreateOneDealInput {
+  id   String @id @default(uuid())
+  deal String
+}
+
+model CreateOneDealStageInput {
+  id        String @id @default(uuid())
+  dealStage String
+}
+
+model CreateOneEventCategoryInput {
+  id            String @id @default(uuid())
+  eventCategory String
+}
+
+model CreateOneEventInput {
+  id    String @id @default(uuid())
+  event String
+}
+
+model CreateOneQuoteInput {
+  id    String @id @default(uuid())
+  quote String
+}
+
+model CreateOneTaskCommentInput {
+  id          String @id @default(uuid())
+  taskComment String
+}
+
+model CreateOneTaskInput {
+  id   String @id @default(uuid())
+  task String
+}
+
+model CreateOneTaskStageInput {
+  id        String @id @default(uuid())
+  taskStage String
+}
+
+model CreateOneUserInput {
+  id   String @id @default(uuid())
+  user String
+}
+
+model CreateQuoteSubscriptionFilterInput {
+  id     String @id @default(uuid())
+  filter String
+}
+
+model CreateTaskCommentSubscriptionFilterInput {
+  id     String @id @default(uuid())
+  filter String
+}
+
+model CreateTaskStageSubscriptionFilterInput {
+  id     String @id @default(uuid())
+  filter String
+}
+
+model CreateTaskSubscriptionFilterInput {
+  id     String @id @default(uuid())
+  filter String
+}
+
+model CreateUserSubscriptionFilterInput {
+  id     String @id @default(uuid())
+  filter String
+}
+
+model DateFieldComparison {
+  id         String  @id @default(uuid())
+  between    String?
+  eq         String?
+  gt         String?
+  gte        String?
+  in         String?
+  is         String?
+  isNot      String?
+  lt         String?
+  lte        String?
+  neq        String?
+  notBetween String?
+  notIn      String?
+}
+
+model DateFieldComparisonBetween {
+  id    String @id @default(uuid())
+  lower String
+  upper String
+}
+
+model Deal {
+  closeDateDay   String?
+  closeDateMonth String?
+  closeDateYear  String?
+  company        String
+  companyId      String
+  createdAt      String
+  createdBy      String
+  dealContact    String
+  dealOwner      String
+  dealOwnerId    String
+  id             String  @id
+  notes          String
+  stage          String?
+  stageId        String?
+  title          String
+  updatedAt      String
+  updatedBy      String?
+  value          String?
+}
+
+model DealAggregateFilter {
+  and            String?
+  closeDateDay   String?
+  closeDateMonth String?
+  closeDateYear  String?
+  companyId      String?
+  createdAt      String?
+  dealOwnerId    String?
+  id             String  @id
+  or             String?
+  stageId        String?
+  title          String?
+  updatedAt      String?
+  value          String?
+}
+
+model DealAggregateGroupBy {
+  closeDateDay   String?
+  closeDateMonth String?
+  closeDateYear  String?
+  companyId      String?
+  createdAt      String?
+  dealOwnerId    String?
+  id             String  @id
+  stageId        String?
+  title          String?
+  updatedAt      String?
+  value          String?
+}
+
+model DealAggregateGroupByCreatedAtArgs {
+  id String  @id @default(uuid())
+  by String?
+}
+
+model DealAggregateGroupByUpdatedAtArgs {
+  id String  @id @default(uuid())
+  by String?
+}
+
+model DealAggregateResponse {
+  id      String  @id @default(uuid())
+  avg     String?
+  count   String?
+  groupBy String?
+  max     String?
+  min     String?
+  sum     String?
+}
+
+model DealAvgAggregate {
+  closeDateDay   String?
+  closeDateMonth String?
+  closeDateYear  String?
+  companyId      String?
+  dealOwnerId    String?
+  id             String  @id
+  stageId        String?
+  value          String?
+}
+
+model DealConnection {
+  id         String @id @default(uuid())
+  nodes      String
+  pageInfo   String
+  totalCount String
+}
+
+model DealCountAggregate {
+  closeDateDay   String?
+  closeDateMonth String?
+  closeDateYear  String?
+  companyId      String?
+  createdAt      String?
+  dealOwnerId    String?
+  id             String  @id
+  stageId        String?
+  title          String?
+  updatedAt      String?
+  value          String?
+}
+
+model DealCreateInput {
+  id            String  @id @default(uuid())
+  companyId     String
+  dealContactId String?
+  dealOwnerId   String
+  stageId       String?
+  title         String
+  value         String?
+}
+
+model DealDeleteFilter {
+  and            String?
+  closeDateDay   String?
+  closeDateMonth String?
+  closeDateYear  String?
+  companyId      String?
+  createdAt      String?
+  dealOwnerId    String?
+  id             String  @id
+  or             String?
+  stageId        String?
+  title          String?
+  updatedAt      String?
+  value          String?
+}
+
+model DealDeleteResponse {
+  closeDateDay   String?
+  closeDateMonth String?
+  closeDateYear  String?
+  companyId      String?
+  createdAt      String?
+  dealOwnerId    String?
+  id             String  @id
+  notes          String?
+  stageId        String?
+  title          String?
+  updatedAt      String?
+  value          String?
+}
+
+model DealFilter {
+  and            String?
+  closeDateDay   String?
+  closeDateMonth String?
+  closeDateYear  String?
+  company        String?
+  companyId      String?
+  createdAt      String?
+  createdBy      String?
+  dealContact    String?
+  dealOwner      String?
+  dealOwnerId    String?
+  id             String  @id
+  or             String?
+  stage          String?
+  stageId        String?
+  title          String?
+  updatedAt      String?
+  updatedBy      String?
+  value          String?
+}
+
+model DealFilterCompanyFilter {
+  and          String?
+  businessType String?
+  companySize  String?
+  country      String?
+  createdAt    String?
+  id           String  @id
+  industry     String?
+  name         String?
+  or           String?
+  totalRevenue String?
+  updatedAt    String?
+  website      String?
+}
+
+model DealFilterContactFilter {
+  and       String?
+  createdAt String?
+  email     String?
+  id        String  @id
+  jobTitle  String?
+  name      String?
+  or        String?
+  phone     String?
+  score     String?
+  stage     String?
+  status    String?
+  timezone  String?
+  updatedAt String?
+}
+
+model DealFilterDealStageFilter {
+  and       String?
+  createdAt String?
+  id        String  @id
+  or        String?
+  title     String?
+  updatedAt String?
+}
+
+model DealFilterUserFilter {
+  and       String?
+  createdAt String?
+  email     String?
+  id        String  @id
+  jobTitle  String?
+  name      String?
+  or        String?
+  phone     String?
+  role      String?
+  timezone  String?
+  updatedAt String?
+}
+
+model DealMaxAggregate {
+  closeDateDay   String?
+  closeDateMonth String?
+  closeDateYear  String?
+  companyId      String?
+  createdAt      String?
+  dealOwnerId    String?
+  id             String  @id
+  stageId        String?
+  title          String?
+  updatedAt      String?
+  value          String?
+}
+
+model DealMinAggregate {
+  closeDateDay   String?
+  closeDateMonth String?
+  closeDateYear  String?
+  companyId      String?
+  createdAt      String?
+  dealOwnerId    String?
+  id             String  @id
+  stageId        String?
+  title          String?
+  updatedAt      String?
+  value          String?
+}
+
+model DealSort {
+  id        String  @id @default(uuid())
+  direction String
+  field     String
+  nulls     String?
+}
+
+model DealStage {
+  createdAt      String
+  createdBy      String
+  deals          String
+  dealsAggregate String
+  id             String  @id
+  title          String
+  updatedAt      String
+  updatedBy      String?
+}
+
+model DealStageDealsArgs {
+  id      String  @id @default(uuid())
+  filter  String?
+  sorting String?
+}
+
+model DealStageDealsAggregateArgs {
+  id     String  @id @default(uuid())
+  filter String?
+}
+
+model DealStageConnection {
+  id         String @id @default(uuid())
+  nodes      String
+  pageInfo   String
+  totalCount String
+}
+
+model DealStageCreateInput {
+  id    String @id @default(uuid())
+  title String
+}
+
+model DealStageDealsAggregateGroupBy {
+  closeDateDay   String?
+  closeDateMonth String?
+  closeDateYear  String?
+  companyId      String?
+  createdAt      String?
+  dealOwnerId    String?
+  id             String  @id
+  stageId        String?
+  title          String?
+  updatedAt      String?
+  value          String?
+}
+
+model DealStageDealsAggregateResponse {
+  id      String  @id @default(uuid())
+  avg     String?
+  count   String?
+  groupBy String?
+  max     String?
+  min     String?
+  sum     String?
+}
+
+model DealStageDealsAvgAggregate {
+  closeDateDay   String?
+  closeDateMonth String?
+  closeDateYear  String?
+  companyId      String?
+  dealOwnerId    String?
+  id             String  @id
+  stageId        String?
+  value          String?
+}
+
+model DealStageDealsCountAggregate {
+  closeDateDay   String?
+  closeDateMonth String?
+  closeDateYear  String?
+  companyId      String?
+  createdAt      String?
+  dealOwnerId    String?
+  id             String  @id
+  stageId        String?
+  title          String?
+  updatedAt      String?
+  value          String?
+}
+
+model DealStageDealsMaxAggregate {
+  closeDateDay   String?
+  closeDateMonth String?
+  closeDateYear  String?
+  companyId      String?
+  createdAt      String?
+  dealOwnerId    String?
+  id             String  @id
+  stageId        String?
+  title          String?
+  updatedAt      String?
+  value          String?
+}
+
+model DealStageDealsMinAggregate {
+  closeDateDay   String?
+  closeDateMonth String?
+  closeDateYear  String?
+  companyId      String?
+  createdAt      String?
+  dealOwnerId    String?
+  id             String  @id
+  stageId        String?
+  title          String?
+  updatedAt      String?
+  value          String?
+}
+
+model DealStageDealsSumAggregate {
+  closeDateDay   String?
+  closeDateMonth String?
+  closeDateYear  String?
+  companyId      String?
+  dealOwnerId    String?
+  id             String  @id
+  stageId        String?
+  value          String?
+}
+
+model DealStageDeleteFilter {
+  and       String?
+  createdAt String?
+  id        String  @id
+  or        String?
+  title     String?
+  updatedAt String?
+}
+
+model DealStageDeleteResponse {
+  createdAt String?
+  id        String  @id
+  title     String?
+  updatedAt String?
+}
+
+model DealStageFilter {
+  and       String?
+  createdAt String?
+  createdBy String?
+  deals     String?
+  id        String  @id
+  or        String?
+  title     String?
+  updatedAt String?
+  updatedBy String?
+}
+
+model DealStageFilterDealFilter {
+  and            String?
+  closeDateDay   String?
+  closeDateMonth String?
+  closeDateYear  String?
+  companyId      String?
+  createdAt      String?
+  dealOwnerId    String?
+  id             String  @id
+  or             String?
+  stageId        String?
+  title          String?
+  updatedAt      String?
+  value          String?
+}
+
+model DealStageFilterUserFilter {
+  and       String?
+  createdAt String?
+  email     String?
+  id        String  @id
+  jobTitle  String?
+  name      String?
+  or        String?
+  phone     String?
+  role      String?
+  timezone  String?
+  updatedAt String?
+}
+
+model DealStageSort {
+  id        String  @id @default(uuid())
+  direction String
+  field     String
+  nulls     String?
+}
+
+model DealStageSubscriptionFilter {
+  and       String?
+  createdAt String?
+  id        String  @id
+  or        String?
+  title     String?
+  updatedAt String?
+}
+
+model DealStageUpdateFilter {
+  and       String?
+  createdAt String?
+  id        String  @id
+  or        String?
+  title     String?
+  updatedAt String?
+}
+
+model DealStageUpdateInput {
+  id      String  @id @default(uuid())
+  stageId String?
+  title   String?
+}
+
+model DealSubscriptionFilter {
+  and            String?
+  closeDateDay   String?
+  closeDateMonth String?
+  closeDateYear  String?
+  companyId      String?
+  createdAt      String?
+  dealOwnerId    String?
+  id             String  @id
+  or             String?
+  stageId        String?
+  title          String?
+  updatedAt      String?
+  value          String?
+}
+
+model DealSumAggregate {
+  closeDateDay   String?
+  closeDateMonth String?
+  closeDateYear  String?
+  companyId      String?
+  dealOwnerId    String?
+  id             String  @id
+  stageId        String?
+  value          String?
+}
+
+model DealUpdateFilter {
+  and            String?
+  closeDateDay   String?
+  closeDateMonth String?
+  closeDateYear  String?
+  companyId      String?
+  createdAt      String?
+  dealOwnerId    String?
+  id             String  @id
+  or             String?
+  stageId        String?
+  title          String?
+  updatedAt      String?
+  value          String?
+}
+
+model DealUpdateInput {
+  id             String  @id @default(uuid())
+  closeDateDay   String?
+  closeDateMonth String?
+  closeDateYear  String?
+  companyId      String?
+  dealContactId  String?
+  dealOwnerId    String?
+  notes          String?
+  stageId        String?
+  title          String?
+  value          String?
+}
+
+model DeleteManyCompaniesInput {
+  id     String @id @default(uuid())
+  filter String
+}
+
+model DeleteManyCompanyNotesInput {
+  id     String @id @default(uuid())
+  filter String
+}
+
+model DeleteManyContactNotesInput {
+  id     String @id @default(uuid())
+  filter String
+}
+
+model DeleteManyContactsInput {
+  id     String @id @default(uuid())
+  filter String
+}
+
+model DeleteManyDealStagesInput {
+  id     String @id @default(uuid())
+  filter String
+}
+
+model DeleteManyDealsInput {
+  id     String @id @default(uuid())
+  filter String
+}
+
+model DeleteManyEventCategoriesInput {
+  id     String @id @default(uuid())
+  filter String
+}
+
+model DeleteManyEventsInput {
+  id     String @id @default(uuid())
+  filter String
+}
+
+model DeleteManyQuotesInput {
+  id     String @id @default(uuid())
+  filter String
+}
+
+model DeleteManyResponse {
+  id           String @id @default(uuid())
+  deletedCount String
+}
+
+model DeleteManyTaskCommentsInput {
+  id     String @id @default(uuid())
+  filter String
+}
+
+model DeleteManyTaskStagesInput {
+  id     String @id @default(uuid())
+  filter String
+}
+
+model DeleteManyTasksInput {
+  id     String @id @default(uuid())
+  filter String
+}
+
+model DeleteManyUsersInput {
+  id     String @id @default(uuid())
+  filter String
+}
+
+model DeleteOneAuditSubscriptionFilterInput {
+  id     String @id @default(uuid())
+  filter String
+}
+
+model DeleteOneCompanyInput {
+  id String @id
+}
+
+model DeleteOneCompanyNoteInput {
+  id String @id
+}
+
+model DeleteOneCompanyNoteSubscriptionFilterInput {
+  id     String @id @default(uuid())
+  filter String
+}
+
+model DeleteOneCompanySubscriptionFilterInput {
+  id     String @id @default(uuid())
+  filter String
+}
+
+model DeleteOneContactInput {
+  id String @id
+}
+
+model DeleteOneContactNoteInput {
+  id String @id
+}
+
+model DeleteOneContactNoteSubscriptionFilterInput {
+  id     String @id @default(uuid())
+  filter String
+}
+
+model DeleteOneContactSubscriptionFilterInput {
+  id     String @id @default(uuid())
+  filter String
+}
+
+model DeleteOneDealInput {
+  id String @id
+}
+
+model DeleteOneDealStageInput {
+  id String @id
+}
+
+model DeleteOneDealStageSubscriptionFilterInput {
+  id     String @id @default(uuid())
+  filter String
+}
+
+model DeleteOneDealSubscriptionFilterInput {
+  id     String @id @default(uuid())
+  filter String
+}
+
+model DeleteOneEventCategoryInput {
+  id String @id
+}
+
+model DeleteOneEventCategorySubscriptionFilterInput {
+  id     String @id @default(uuid())
+  filter String
+}
+
+model DeleteOneEventInput {
+  id String @id
+}
+
+model DeleteOneEventSubscriptionFilterInput {
+  id     String @id @default(uuid())
+  filter String
+}
+
+model DeleteOneQuoteInput {
+  id String @id
+}
+
+model DeleteOneQuoteSubscriptionFilterInput {
+  id     String @id @default(uuid())
+  filter String
+}
+
+model DeleteOneTaskCommentInput {
+  id String @id
+}
+
+model DeleteOneTaskCommentSubscriptionFilterInput {
+  id     String @id @default(uuid())
+  filter String
+}
+
+model DeleteOneTaskInput {
+  id String @id
+}
+
+model DeleteOneTaskStageInput {
+  id String @id
+}
+
+model DeleteOneTaskStageSubscriptionFilterInput {
+  id     String @id @default(uuid())
+  filter String
+}
+
+model DeleteOneTaskSubscriptionFilterInput {
+  id     String @id @default(uuid())
+  filter String
+}
+
+model DeleteOneUserInput {
+  id String @id
+}
+
+model DeleteOneUserSubscriptionFilterInput {
+  id     String @id @default(uuid())
+  filter String
+}
+
+model Event {
+  category     String
+  color        String
+  createdAt    String
+  createdBy    String
+  description  String
+  endDate      String
+  id           String  @id
+  participants String
+  startDate    String
+  title        String
+  updatedAt    String
+  updatedBy    String?
+}
+
+model EventParticipantsArgs {
+  id      String  @id @default(uuid())
+  filter  String?
+  sorting String?
+}
+
+model EventCategory {
+  createdAt String
+  createdBy String
+  events    String
+  id        String  @id
+  title     String
+  updatedAt String
+  updatedBy String?
+}
+
+model EventCategoryEventsArgs {
+  id      String  @id @default(uuid())
+  filter  String?
+  sorting String?
+}
+
+model EventCategoryConnection {
+  id         String @id @default(uuid())
+  nodes      String
+  pageInfo   String
+  totalCount String
+}
+
+model EventCategoryCreateInput {
+  id    String @id @default(uuid())
+  title String
+}
+
+model EventCategoryDeleteFilter {
+  and       String?
+  createdAt String?
+  id        String  @id
+  or        String?
+  title     String?
+  updatedAt String?
+}
+
+model EventCategoryDeleteResponse {
+  createdAt String?
+  id        String  @id
+  title     String?
+  updatedAt String?
+}
+
+model EventCategoryFilter {
+  and       String?
+  createdAt String?
+  createdBy String?
+  id        String  @id
+  or        String?
+  title     String?
+  updatedAt String?
+  updatedBy String?
+}
+
+model EventCategoryFilterUserFilter {
+  and       String?
+  createdAt String?
+  email     String?
+  id        String  @id
+  jobTitle  String?
+  name      String?
+  or        String?
+  phone     String?
+  role      String?
+  timezone  String?
+  updatedAt String?
+}
+
+model EventCategorySort {
+  id        String  @id @default(uuid())
+  direction String
+  field     String
+  nulls     String?
+}
+
+model EventCategorySubscriptionFilter {
+  and       String?
+  createdAt String?
+  id        String  @id
+  or        String?
+  title     String?
+  updatedAt String?
+}
+
+model EventCategoryUpdateFilter {
+  and       String?
+  createdAt String?
+  id        String  @id
+  or        String?
+  title     String?
+  updatedAt String?
+}
+
+model EventCategoryUpdateInput {
+  id    String @id @default(uuid())
+  title String
+}
+
+model EventConnection {
+  id         String @id @default(uuid())
+  nodes      String
+  pageInfo   String
+  totalCount String
+}
+
+model EventCreateInput {
+  id             String @id @default(uuid())
+  categoryId     String
+  color          String
+  description    String
+  endDate        String
+  participantIds String
+  startDate      String
+  title          String
+}
+
+model EventDeleteFilter {
+  and         String?
+  createdAt   String?
+  description String?
+  endDate     String?
+  id          String  @id
+  or          String?
+  startDate   String?
+  title       String?
+  updatedAt   String?
+}
+
+model EventDeleteResponse {
+  color       String?
+  createdAt   String?
+  description String?
+  endDate     String?
+  id          String  @id
+  startDate   String?
+  title       String?
+  updatedAt   String?
+}
+
+model EventFilter {
+  and         String?
+  category    String?
+  createdAt   String?
+  createdBy   String?
+  description String?
+  endDate     String?
+  id          String  @id
+  or          String?
+  startDate   String?
+  title       String?
+  updatedAt   String?
+  updatedBy   String?
+}
+
+model EventFilterEventCategoryFilter {
+  and       String?
+  createdAt String?
+  id        String  @id
+  or        String?
+  title     String?
+  updatedAt String?
+}
+
+model EventFilterUserFilter {
+  and       String?
+  createdAt String?
+  email     String?
+  id        String  @id
+  jobTitle  String?
+  name      String?
+  or        String?
+  phone     String?
+  role      String?
+  timezone  String?
+  updatedAt String?
+}
+
+model EventSort {
+  id        String  @id @default(uuid())
+  direction String
+  field     String
+  nulls     String?
+}
+
+model EventSubscriptionFilter {
+  and         String?
+  createdAt   String?
+  description String?
+  endDate     String?
+  id          String  @id
+  or          String?
+  startDate   String?
+  title       String?
+  updatedAt   String?
+}
+
+model EventUpdateFilter {
+  and         String?
+  createdAt   String?
+  description String?
+  endDate     String?
+  id          String  @id
+  or          String?
+  startDate   String?
+  title       String?
+  updatedAt   String?
+}
+
+model EventUpdateInput {
+  id             String  @id @default(uuid())
+  categoryId     String?
+  color          String?
+  description    String?
+  endDate        String?
+  participantIds String?
+  startDate      String?
+  title          String?
+}
+
+model FloatFieldComparison {
+  id         String  @id @default(uuid())
+  between    String?
+  eq         String?
+  gt         String?
+  gte        String?
+  in         String?
+  is         String?
+  isNot      String?
+  lt         String?
+  lte        String?
+  neq        String?
+  notBetween String?
+  notIn      String?
+}
+
+model FloatFieldComparisonBetween {
+  id    String @id @default(uuid())
+  lower String
+  upper String
+}
+
+model IdFilterComparison {
+  id       String  @id @default(uuid())
+  eq       String?
+  gt       String?
+  gte      String?
+  iLike    String?
+  in       String?
+  is       String?
+  isNot    String?
+  like     String?
+  lt       String?
+  lte      String?
+  neq      String?
+  notILike String?
+  notIn    String?
+  notLike  String?
+}
+
+model IntFieldComparison {
+  id         String  @id @default(uuid())
+  between    String?
+  eq         String?
+  gt         String?
+  gte        String?
+  in         String?
+  is         String?
+  isNot      String?
+  lt         String?
+  lte        String?
+  neq        String?
+  notBetween String?
+  notIn      String?
+}
+
+model IntFieldComparisonBetween {
+  id    String @id @default(uuid())
+  lower String
+  upper String
+}
+
+model LoginInput {
+  id    String @id @default(uuid())
+  email String
+}
+
+model Mutation {
+  id                        String @id @default(uuid())
+  createManyCompanies       String
+  createManyCompanyNotes    String
+  createManyContactNotes    String
+  createManyContacts        String
+  createManyDealStages      String
+  createManyDeals           String
+  createManyEventCategories String
+  createManyEvents          String
+  createManyQuotes          String
+  createManyTaskComments    String
+  createManyTaskStages      String
+  createManyTasks           String
+  createManyUsers           String
+  createOneCompany          String
+  createOneCompanyNote      String
+  createOneContact          String
+  createOneContactNote      String
+  createOneDeal             String
+  createOneDealStage        String
+  createOneEvent            String
+  createOneEventCategory    String
+  createOneQuote            String
+  createOneTask             String
+  createOneTaskComment      String
+  createOneTaskStage        String
+  createOneUser             String
+  deleteManyCompanies       String
+  deleteManyCompanyNotes    String
+  deleteManyContactNotes    String
+  deleteManyContacts        String
+  deleteManyDealStages      String
+  deleteManyDeals           String
+  deleteManyEventCategories String
+  deleteManyEvents          String
+  deleteManyQuotes          String
+  deleteManyTaskComments    String
+  deleteManyTaskStages      String
+  deleteManyTasks           String
+  deleteManyUsers           String
+  deleteOneCompany          String
+  deleteOneCompanyNote      String
+  deleteOneContact          String
+  deleteOneContactNote      String
+  deleteOneDeal             String
+  deleteOneDealStage        String
+  deleteOneEvent            String
+  deleteOneEventCategory    String
+  deleteOneQuote            String
+  deleteOneTask             String
+  deleteOneTaskComment      String
+  deleteOneTaskStage        String
+  deleteOneUser             String
+  login                     String
+  refreshToken              String
+  register                  String
+  updateManyCompanies       String
+  updateManyCompanyNotes    String
+  updateManyContactNotes    String
+  updateManyContacts        String
+  updateManyDealStages      String
+  updateManyDeals           String
+  updateManyEventCategories String
+  updateManyEvents          String
+  updateManyQuotes          String
+  updateManyTaskComments    String
+  updateManyTaskStages      String
+  updateManyTasks           String
+  updateManyUsers           String
+  updateOneCompany          String
+  updateOneCompanyNote      String
+  updateOneContact          String
+  updateOneContactNote      String
+  updateOneDeal             String
+  updateOneDealStage        String
+  updateOneEvent            String
+  updateOneEventCategory    String
+  updateOneQuote            String
+  updateOneTask             String
+  updateOneTaskComment      String
+  updateOneTaskStage        String
+  updateOneUser             String
+}
+
+model MutationCreateManyCompaniesArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationCreateManyCompanyNotesArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationCreateManyContactNotesArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationCreateManyContactsArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationCreateManyDealStagesArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationCreateManyDealsArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationCreateManyEventCategoriesArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationCreateManyEventsArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationCreateManyQuotesArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationCreateManyTaskCommentsArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationCreateManyTaskStagesArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationCreateManyTasksArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationCreateManyUsersArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationCreateOneCompanyArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationCreateOneCompanyNoteArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationCreateOneContactArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationCreateOneContactNoteArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationCreateOneDealArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationCreateOneDealStageArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationCreateOneEventArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationCreateOneEventCategoryArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationCreateOneQuoteArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationCreateOneTaskArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationCreateOneTaskCommentArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationCreateOneTaskStageArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationCreateOneUserArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationDeleteManyCompaniesArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationDeleteManyCompanyNotesArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationDeleteManyContactNotesArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationDeleteManyContactsArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationDeleteManyDealStagesArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationDeleteManyDealsArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationDeleteManyEventCategoriesArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationDeleteManyEventsArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationDeleteManyQuotesArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationDeleteManyTaskCommentsArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationDeleteManyTaskStagesArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationDeleteManyTasksArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationDeleteManyUsersArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationDeleteOneCompanyArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationDeleteOneCompanyNoteArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationDeleteOneContactArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationDeleteOneContactNoteArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationDeleteOneDealArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationDeleteOneDealStageArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationDeleteOneEventArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationDeleteOneEventCategoryArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationDeleteOneQuoteArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationDeleteOneTaskArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationDeleteOneTaskCommentArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationDeleteOneTaskStageArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationDeleteOneUserArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationLoginArgs {
+  id         String @id @default(uuid())
+  loginInput String
+}
+
+model MutationRefreshTokenArgs {
+  id           String @id @default(uuid())
+  refreshToken String
+}
+
+model MutationRegisterArgs {
+  id            String @id @default(uuid())
+  registerInput String
+}
+
+model MutationUpdateManyCompaniesArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationUpdateManyCompanyNotesArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationUpdateManyContactNotesArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationUpdateManyContactsArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationUpdateManyDealStagesArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationUpdateManyDealsArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationUpdateManyEventCategoriesArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationUpdateManyEventsArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationUpdateManyQuotesArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationUpdateManyTaskCommentsArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationUpdateManyTaskStagesArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationUpdateManyTasksArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationUpdateManyUsersArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationUpdateOneCompanyArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationUpdateOneCompanyNoteArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationUpdateOneContactArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationUpdateOneContactNoteArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationUpdateOneDealArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationUpdateOneDealStageArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationUpdateOneEventArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationUpdateOneEventCategoryArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationUpdateOneQuoteArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationUpdateOneTaskArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationUpdateOneTaskCommentArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationUpdateOneTaskStageArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model MutationUpdateOneUserArgs {
+  id    String @id @default(uuid())
+  input String
+}
+
+model NumberFieldComparison {
+  id         String  @id @default(uuid())
+  between    String?
+  eq         String?
+  gt         String?
+  gte        String?
+  in         String?
+  is         String?
+  isNot      String?
+  lt         String?
+  lte        String?
+  neq        String?
+  notBetween String?
+  notIn      String?
+}
+
+model NumberFieldComparisonBetween {
+  id    String @id @default(uuid())
+  lower String
+  upper String
+}
+
+model OffsetPageInfo {
+  id              String  @id @default(uuid())
+  hasNextPage     String?
+  hasPreviousPage String?
+}
+
+model OffsetPaging {
+  id     String  @id @default(uuid())
+  limit  String?
+  offset String?
+}
+
+model Query {
+  id                 String @id @default(uuid())
+  audit              String
+  audits             String
+  companies          String
+  company            String
+  companyAggregate   String
+  companyNote        String
+  companyNotes       String
+  contact            String
+  contactNote        String
+  contactNotes       String
+  contacts           String
+  deal               String
+  dealAggregate      String
+  dealStage          String
+  dealStages         String
+  deals              String
+  event              String
+  eventCategories    String
+  eventCategory      String
+  events             String
+  me                 String
+  quote              String
+  quotes             String
+  task               String
+  taskAggregate      String
+  taskComment        String
+  taskComments       String
+  taskStage          String
+  taskStageAggregate String
+  taskStages         String
+  tasks              String
+  user               String
+  users              String
+}
+
+model QueryAuditArgs {
+  id String @id
+}
+
+model QueryAuditsArgs {
+  id      String  @id @default(uuid())
+  filter  String?
+  paging  String?
+  sorting String?
+}
+
+model QueryCompaniesArgs {
+  id      String  @id @default(uuid())
+  filter  String?
+  paging  String?
+  sorting String?
+}
+
+model QueryCompanyArgs {
+  id String @id
+}
+
+model QueryCompanyAggregateArgs {
+  id     String  @id @default(uuid())
+  filter String?
+}
+
+model QueryCompanyNoteArgs {
+  id String @id
+}
+
+model QueryCompanyNotesArgs {
+  id      String  @id @default(uuid())
+  filter  String?
+  paging  String?
+  sorting String?
+}
+
+model QueryContactArgs {
+  id String @id
+}
+
+model QueryContactNoteArgs {
+  id String @id
+}
+
+model QueryContactNotesArgs {
+  id      String  @id @default(uuid())
+  filter  String?
+  paging  String?
+  sorting String?
+}
+
+model QueryContactsArgs {
+  id      String  @id @default(uuid())
+  filter  String?
+  paging  String?
+  sorting String?
+}
+
+model QueryDealArgs {
+  id String @id
+}
+
+model QueryDealAggregateArgs {
+  id     String  @id @default(uuid())
+  filter String?
+}
+
+model QueryDealStageArgs {
+  id String @id
+}
+
+model QueryDealStagesArgs {
+  id      String  @id @default(uuid())
+  filter  String?
+  paging  String?
+  sorting String?
+}
+
+model QueryDealsArgs {
+  id      String  @id @default(uuid())
+  filter  String?
+  paging  String?
+  sorting String?
+}
+
+model QueryEventArgs {
+  id String @id
+}
+
+model QueryEventCategoriesArgs {
+  id      String  @id @default(uuid())
+  filter  String?
+  paging  String?
+  sorting String?
+}
+
+model QueryEventCategoryArgs {
+  id String @id
+}
+
+model QueryEventsArgs {
+  id      String  @id @default(uuid())
+  filter  String?
+  paging  String?
+  sorting String?
+}
+
+model QueryQuoteArgs {
+  id String @id
+}
+
+model QueryQuotesArgs {
+  id      String  @id @default(uuid())
+  filter  String?
+  paging  String?
+  sorting String?
+}
+
+model QueryTaskArgs {
+  id String @id
+}
+
+model QueryTaskAggregateArgs {
+  id     String  @id @default(uuid())
+  filter String?
+}
+
+model QueryTaskCommentArgs {
+  id String @id
+}
+
+model QueryTaskCommentsArgs {
+  id      String  @id @default(uuid())
+  filter  String?
+  paging  String?
+  sorting String?
+}
+
+model QueryTaskStageArgs {
+  id String @id
+}
+
+model QueryTaskStageAggregateArgs {
+  id     String  @id @default(uuid())
+  filter String?
+}
+
+model QueryTaskStagesArgs {
+  id      String  @id @default(uuid())
+  filter  String?
+  paging  String?
+  sorting String?
+}
+
+model QueryTasksArgs {
+  id      String  @id @default(uuid())
+  filter  String?
+  paging  String?
+  sorting String?
+}
+
+model QueryUserArgs {
+  id String @id
+}
+
+model QueryUsersArgs {
+  id      String  @id @default(uuid())
+  filter  String?
+  paging  String?
+  sorting String?
+}
+
+model Quote {
+  company     String
+  contact     String
+  createdAt   String
+  createdBy   String
+  description String?
+  id          String  @id
+  items       String
+  salesOwner  String
+  status      String
+  subTotal    String
+  tax         String
+  title       String
+  total       String
+  updatedAt   String
+  updatedBy   String?
+}
+
+model QuoteConnection {
+  id         String @id @default(uuid())
+  nodes      String
+  pageInfo   String
+  totalCount String
+}
+
+model QuoteCreateInput {
+  id           String @id @default(uuid())
+  companyId    String
+  contactId    String
+  salesOwnerId String
+  title        String
+}
+
+model QuoteDeleteFilter {
+  and       String?
+  createdAt String?
+  id        String  @id
+  or        String?
+  status    String?
+  title     String?
+  total     String?
+  updatedAt String?
+}
+
+model QuoteDeleteResponse {
+  createdAt   String?
+  description String?
+  id          String  @id
+  items       String?
+  status      String?
+  subTotal    String?
+  tax         String?
+  title       String?
+  total       String?
+  updatedAt   String?
+}
+
+model QuoteFilter {
+  and        String?
+  company    String?
+  contact    String?
+  createdAt  String?
+  createdBy  String?
+  id         String  @id
+  or         String?
+  salesOwner String?
+  status     String?
+  title      String?
+  total      String?
+  updatedAt  String?
+  updatedBy  String?
+}
+
+model QuoteFilterCompanyFilter {
+  and          String?
+  businessType String?
+  companySize  String?
+  country      String?
+  createdAt    String?
+  id           String  @id
+  industry     String?
+  name         String?
+  or           String?
+  totalRevenue String?
+  updatedAt    String?
+  website      String?
+}
+
+model QuoteFilterContactFilter {
+  and       String?
+  createdAt String?
+  email     String?
+  id        String  @id
+  jobTitle  String?
+  name      String?
+  or        String?
+  phone     String?
+  score     String?
+  stage     String?
+  status    String?
+  timezone  String?
+  updatedAt String?
+}
+
+model QuoteFilterUserFilter {
+  and       String?
+  createdAt String?
+  email     String?
+  id        String  @id
+  jobTitle  String?
+  name      String?
+  or        String?
+  phone     String?
+  role      String?
+  timezone  String?
+  updatedAt String?
+}
+
+model QuoteItem {
+  id         String @id @default(uuid())
+  discount   String
+  quantity   String
+  title      String
+  totalPrice String
+  unitPrice  String
+}
+
+model QuoteItemInput {
+  id        String @id @default(uuid())
+  discount  String
+  quantity  String
+  title     String
+  unitPrice String
+}
+
+model QuoteSort {
+  id        String  @id @default(uuid())
+  direction String
+  field     String
+  nulls     String?
+}
+
+model QuoteStatusFilterComparison {
+  id       String  @id @default(uuid())
+  eq       String?
+  gt       String?
+  gte      String?
+  iLike    String?
+  in       String?
+  is       String?
+  isNot    String?
+  like     String?
+  lt       String?
+  lte      String?
+  neq      String?
+  notILike String?
+  notIn    String?
+  notLike  String?
+}
+
+model QuoteSubscriptionFilter {
+  and       String?
+  createdAt String?
+  id        String  @id
+  or        String?
+  status    String?
+  title     String?
+  total     String?
+  updatedAt String?
+}
+
+model QuoteUpdateFilter {
+  and       String?
+  createdAt String?
+  id        String  @id
+  or        String?
+  status    String?
+  title     String?
+  total     String?
+  updatedAt String?
+}
+
+model QuoteUpdateInput {
+  id           String  @id @default(uuid())
+  companyId    String?
+  contactId    String?
+  description  String?
+  items        String?
+  salesOwnerId String?
+  status       String?
+  tax          String?
+  title        String?
+}
+
+model RegisterInput {
+  id       String @id @default(uuid())
+  email    String
+  password String
+}
+
+model StringFieldComparison {
+  id       String  @id @default(uuid())
+  eq       String?
+  gt       String?
+  gte      String?
+  iLike    String?
+  in       String?
+  is       String?
+  isNot    String?
+  like     String?
+  lt       String?
+  lte      String?
+  neq      String?
+  notILike String?
+  notIn    String?
+  notLike  String?
+}
+
+model Subscription {
+  id                         String @id @default(uuid())
+  createdAudit               String
+  createdCompany             String
+  createdCompanyNote         String
+  createdContact             String
+  createdContactNote         String
+  createdDeal                String
+  createdDealStage           String
+  createdEvent               String
+  createdEventCategory       String
+  createdQuote               String
+  createdTask                String
+  createdTaskComment         String
+  createdTaskStage           String
+  createdUser                String
+  deletedManyAudits          String
+  deletedManyCompanies       String
+  deletedManyCompanyNotes    String
+  deletedManyContactNotes    String
+  deletedManyContacts        String
+  deletedManyDealStages      String
+  deletedManyDeals           String
+  deletedManyEventCategories String
+  deletedManyEvents          String
+  deletedManyQuotes          String
+  deletedManyTaskComments    String
+  deletedManyTaskStages      String
+  deletedManyTasks           String
+  deletedManyUsers           String
+  deletedOneAudit            String
+  deletedOneCompany          String
+  deletedOneCompanyNote      String
+  deletedOneContact          String
+  deletedOneContactNote      String
+  deletedOneDeal             String
+  deletedOneDealStage        String
+  deletedOneEvent            String
+  deletedOneEventCategory    String
+  deletedOneQuote            String
+  deletedOneTask             String
+  deletedOneTaskComment      String
+  deletedOneTaskStage        String
+  deletedOneUser             String
+  updatedManyAudits          String
+  updatedManyCompanies       String
+  updatedManyCompanyNotes    String
+  updatedManyContactNotes    String
+  updatedManyContacts        String
+  updatedManyDealStages      String
+  updatedManyDeals           String
+  updatedManyEventCategories String
+  updatedManyEvents          String
+  updatedManyQuotes          String
+  updatedManyTaskComments    String
+  updatedManyTaskStages      String
+  updatedManyTasks           String
+  updatedManyUsers           String
+  updatedOneAudit            String
+  updatedOneCompany          String
+  updatedOneCompanyNote      String
+  updatedOneContact          String
+  updatedOneContactNote      String
+  updatedOneDeal             String
+  updatedOneDealStage        String
+  updatedOneEvent            String
+  updatedOneEventCategory    String
+  updatedOneQuote            String
+  updatedOneTask             String
+  updatedOneTaskComment      String
+  updatedOneTaskStage        String
+  updatedOneUser             String
+}
+
+model SubscriptionCreatedAuditArgs {
+  id    String  @id @default(uuid())
+  input String?
+}
+
+model SubscriptionCreatedCompanyArgs {
+  id    String  @id @default(uuid())
+  input String?
+}
+
+model SubscriptionCreatedCompanyNoteArgs {
+  id    String  @id @default(uuid())
+  input String?
+}
+
+model SubscriptionCreatedContactArgs {
+  id    String  @id @default(uuid())
+  input String?
+}
+
+model SubscriptionCreatedContactNoteArgs {
+  id    String  @id @default(uuid())
+  input String?
+}
+
+model SubscriptionCreatedDealArgs {
+  id    String  @id @default(uuid())
+  input String?
+}
+
+model SubscriptionCreatedDealStageArgs {
+  id    String  @id @default(uuid())
+  input String?
+}
+
+model SubscriptionCreatedEventArgs {
+  id    String  @id @default(uuid())
+  input String?
+}
+
+model SubscriptionCreatedEventCategoryArgs {
+  id    String  @id @default(uuid())
+  input String?
+}
+
+model SubscriptionCreatedQuoteArgs {
+  id    String  @id @default(uuid())
+  input String?
+}
+
+model SubscriptionCreatedTaskArgs {
+  id    String  @id @default(uuid())
+  input String?
+}
+
+model SubscriptionCreatedTaskCommentArgs {
+  id    String  @id @default(uuid())
+  input String?
+}
+
+model SubscriptionCreatedTaskStageArgs {
+  id    String  @id @default(uuid())
+  input String?
+}
+
+model SubscriptionCreatedUserArgs {
+  id    String  @id @default(uuid())
+  input String?
+}
+
+model SubscriptionDeletedOneAuditArgs {
+  id    String  @id @default(uuid())
+  input String?
+}
+
+model SubscriptionDeletedOneCompanyArgs {
+  id    String  @id @default(uuid())
+  input String?
+}
+
+model SubscriptionDeletedOneCompanyNoteArgs {
+  id    String  @id @default(uuid())
+  input String?
+}
+
+model SubscriptionDeletedOneContactArgs {
+  id    String  @id @default(uuid())
+  input String?
+}
+
+model SubscriptionDeletedOneContactNoteArgs {
+  id    String  @id @default(uuid())
+  input String?
+}
+
+model SubscriptionDeletedOneDealArgs {
+  id    String  @id @default(uuid())
+  input String?
+}
+
+model SubscriptionDeletedOneDealStageArgs {
+  id    String  @id @default(uuid())
+  input String?
+}
+
+model SubscriptionDeletedOneEventArgs {
+  id    String  @id @default(uuid())
+  input String?
+}
+
+model SubscriptionDeletedOneEventCategoryArgs {
+  id    String  @id @default(uuid())
+  input String?
+}
+
+model SubscriptionDeletedOneQuoteArgs {
+  id    String  @id @default(uuid())
+  input String?
+}
+
+model SubscriptionDeletedOneTaskArgs {
+  id    String  @id @default(uuid())
+  input String?
+}
+
+model SubscriptionDeletedOneTaskCommentArgs {
+  id    String  @id @default(uuid())
+  input String?
+}
+
+model SubscriptionDeletedOneTaskStageArgs {
+  id    String  @id @default(uuid())
+  input String?
+}
+
+model SubscriptionDeletedOneUserArgs {
+  id    String  @id @default(uuid())
+  input String?
+}
+
+model SubscriptionUpdatedOneAuditArgs {
+  id    String  @id @default(uuid())
+  input String?
+}
+
+model SubscriptionUpdatedOneCompanyArgs {
+  id    String  @id @default(uuid())
+  input String?
+}
+
+model SubscriptionUpdatedOneCompanyNoteArgs {
+  id    String  @id @default(uuid())
+  input String?
+}
+
+model SubscriptionUpdatedOneContactArgs {
+  id    String  @id @default(uuid())
+  input String?
+}
+
+model SubscriptionUpdatedOneContactNoteArgs {
+  id    String  @id @default(uuid())
+  input String?
+}
+
+model SubscriptionUpdatedOneDealArgs {
+  id    String  @id @default(uuid())
+  input String?
+}
+
+model SubscriptionUpdatedOneDealStageArgs {
+  id    String  @id @default(uuid())
+  input String?
+}
+
+model SubscriptionUpdatedOneEventArgs {
+  id    String  @id @default(uuid())
+  input String?
+}
+
+model SubscriptionUpdatedOneEventCategoryArgs {
+  id    String  @id @default(uuid())
+  input String?
+}
+
+model SubscriptionUpdatedOneQuoteArgs {
+  id    String  @id @default(uuid())
+  input String?
+}
+
+model SubscriptionUpdatedOneTaskArgs {
+  id    String  @id @default(uuid())
+  input String?
+}
+
+model SubscriptionUpdatedOneTaskCommentArgs {
+  id    String  @id @default(uuid())
+  input String?
+}
+
+model SubscriptionUpdatedOneTaskStageArgs {
+  id    String  @id @default(uuid())
+  input String?
+}
+
+model SubscriptionUpdatedOneUserArgs {
+  id    String  @id @default(uuid())
+  input String?
+}
+
+model Task {
+  checklist         String
+  comments          String
+  commentsAggregate String
+  completed         String
+  createdAt         String
+  createdBy         String
+  description       String?
+  dueDate           String?
+  id                String  @id
+  stage             String?
+  stageId           String?
+  title             String
+  updatedAt         String
+  updatedBy         String?
+  users             String
+  usersAggregate    String
+}
+
+model TaskCommentsArgs {
+  id      String  @id @default(uuid())
+  filter  String?
+  paging  String?
+  sorting String?
+}
+
+model TaskCommentsAggregateArgs {
+  id     String  @id @default(uuid())
+  filter String?
+}
+
+model TaskUsersArgs {
+  id      String  @id @default(uuid())
+  filter  String?
+  sorting String?
+}
+
+model TaskUsersAggregateArgs {
+  id     String  @id @default(uuid())
+  filter String?
+}
+
+model TaskAggregateFilter {
+  and         String?
+  completed   String?
+  createdAt   String?
+  description String?
+  dueDate     String?
+  id          String  @id
+  or          String?
+  stageId     String?
+  title       String?
+  updatedAt   String?
+}
+
+model TaskAggregateGroupBy {
+  completed   String?
+  createdAt   String?
+  description String?
+  dueDate     String?
+  id          String  @id
+  stageId     String?
+  title       String?
+  updatedAt   String?
+}
+
+model TaskAggregateGroupByCreatedAtArgs {
+  id String  @id @default(uuid())
+  by String?
+}
+
+model TaskAggregateGroupByDueDateArgs {
+  id String  @id @default(uuid())
+  by String?
+}
+
+model TaskAggregateGroupByUpdatedAtArgs {
+  id String  @id @default(uuid())
+  by String?
+}
+
+model TaskAggregateResponse {
+  id      String  @id @default(uuid())
+  avg     String?
+  count   String?
+  groupBy String?
+  max     String?
+  min     String?
+  sum     String?
+}
+
+model TaskAvgAggregate {
+  id      String  @id
+  stageId String?
+}
+
+model TaskComment {
+  comment   String
+  createdAt String
+  createdBy String
+  id        String  @id
+  task      String
+  updatedAt String
+  updatedBy String?
+}
+
+model TaskCommentAggregateFilter {
+  and       String?
+  createdAt String?
+  id        String  @id
+  or        String?
+  updatedAt String?
+}
+
+model TaskCommentConnection {
+  id         String @id @default(uuid())
+  nodes      String
+  pageInfo   String
+  totalCount String
+}
+
+model TaskCommentCreateInput {
+  id      String @id @default(uuid())
+  comment String
+  taskId  String
+}
+
+model TaskCommentDeleteFilter {
+  and       String?
+  createdAt String?
+  id        String  @id
+  or        String?
+  updatedAt String?
+}
+
+model TaskCommentDeleteResponse {
+  comment   String?
+  createdAt String?
+  id        String  @id
+  updatedAt String?
+}
+
+model TaskCommentFilter {
+  and       String?
+  createdAt String?
+  createdBy String?
+  id        String  @id
+  or        String?
+  task      String?
+  updatedAt String?
+  updatedBy String?
+}
+
+model TaskCommentFilterTaskFilter {
+  and         String?
+  completed   String?
+  createdAt   String?
+  description String?
+  dueDate     String?
+  id          String  @id
+  or          String?
+  stageId     String?
+  title       String?
+  updatedAt   String?
+}
+
+model TaskCommentFilterUserFilter {
+  and       String?
+  createdAt String?
+  email     String?
+  id        String  @id
+  jobTitle  String?
+  name      String?
+  or        String?
+  phone     String?
+  role      String?
+  timezone  String?
+  updatedAt String?
+}
+
+model TaskCommentSort {
+  id        String  @id @default(uuid())
+  direction String
+  field     String
+  nulls     String?
+}
+
+model TaskCommentSubscriptionFilter {
+  and       String?
+  createdAt String?
+  id        String  @id
+  or        String?
+  updatedAt String?
+}
+
+model TaskCommentUpdateFilter {
+  and       String?
+  createdAt String?
+  id        String  @id
+  or        String?
+  updatedAt String?
+}
+
+model TaskCommentUpdateInput {
+  id      String @id @default(uuid())
+  comment String
+}
+
+model TaskCommentsAggregateGroupBy {
+  createdAt String?
+  id        String  @id
+  updatedAt String?
+}
+
+model TaskCommentsAggregateResponse {
+  id      String  @id @default(uuid())
+  avg     String?
+  count   String?
+  groupBy String?
+  max     String?
+  min     String?
+  sum     String?
+}
+
+model TaskCommentsAvgAggregate {
+  id String @id
+}
+
+model TaskCommentsConnection {
+  id         String @id @default(uuid())
+  nodes      String
+  pageInfo   String
+  totalCount String
+}
+
+model TaskCommentsCountAggregate {
+  createdAt String?
+  id        String  @id
+  updatedAt String?
+}
+
+model TaskCommentsMaxAggregate {
+  createdAt String?
+  id        String  @id
+  updatedAt String?
+}
+
+model TaskCommentsMinAggregate {
+  createdAt String?
+  id        String  @id
+  updatedAt String?
+}
+
+model TaskCommentsSumAggregate {
+  id String @id
+}
+
+model TaskConnection {
+  id         String @id @default(uuid())
+  nodes      String
+  pageInfo   String
+  totalCount String
+}
+
+model TaskCountAggregate {
+  completed   String?
+  createdAt   String?
+  description String?
+  dueDate     String?
+  id          String  @id
+  stageId     String?
+  title       String?
+  updatedAt   String?
+}
+
+model TaskCreateInput {
+  id          String  @id @default(uuid())
+  checklist   String?
+  description String?
+  dueDate     String?
+  stageId     String?
+  title       String
+  userIds     String?
+}
+
+model TaskDeleteFilter {
+  and         String?
+  completed   String?
+  createdAt   String?
+  description String?
+  dueDate     String?
+  id          String  @id
+  or          String?
+  stageId     String?
+  title       String?
+  updatedAt   String?
+}
+
+model TaskDeleteResponse {
+  checklist   String?
+  completed   String?
+  createdAt   String?
+  description String?
+  dueDate     String?
+  id          String  @id
+  stageId     String?
+  title       String?
+  updatedAt   String?
+}
+
+model TaskFilter {
+  and         String?
+  comments    String?
+  completed   String?
+  createdAt   String?
+  createdBy   String?
+  description String?
+  dueDate     String?
+  id          String  @id
+  or          String?
+  stage       String?
+  stageId     String?
+  title       String?
+  updatedAt   String?
+  updatedBy   String?
+}
+
+model TaskFilterTaskCommentFilter {
+  and       String?
+  createdAt String?
+  id        String  @id
+  or        String?
+  updatedAt String?
+}
+
+model TaskFilterTaskStageFilter {
+  and       String?
+  createdAt String?
+  id        String  @id
+  or        String?
+  title     String?
+  updatedAt String?
+}
+
+model TaskFilterUserFilter {
+  and       String?
+  createdAt String?
+  email     String?
+  id        String  @id
+  jobTitle  String?
+  name      String?
+  or        String?
+  phone     String?
+  role      String?
+  timezone  String?
+  updatedAt String?
+}
+
+model TaskMaxAggregate {
+  createdAt   String?
+  description String?
+  dueDate     String?
+  id          String  @id
+  stageId     String?
+  title       String?
+  updatedAt   String?
+}
+
+model TaskMinAggregate {
+  createdAt   String?
+  description String?
+  dueDate     String?
+  id          String  @id
+  stageId     String?
+  title       String?
+  updatedAt   String?
+}
+
+model TaskSort {
+  id        String  @id @default(uuid())
+  direction String
+  field     String
+  nulls     String?
+}
+
+model TaskStage {
+  createdAt      String
+  createdBy      String
+  id             String  @id
+  tasks          String
+  tasksAggregate String
+  title          String
+  updatedAt      String
+  updatedBy      String?
+}
+
+model TaskStageTasksArgs {
+  id      String  @id @default(uuid())
+  filter  String?
+  sorting String?
+}
+
+model TaskStageTasksAggregateArgs {
+  id     String  @id @default(uuid())
+  filter String?
+}
+
+model TaskStageAggregateFilter {
+  and       String?
+  createdAt String?
+  id        String  @id
+  or        String?
+  title     String?
+  updatedAt String?
+}
+
+model TaskStageAggregateGroupBy {
+  createdAt String?
+  id        String  @id
+  title     String?
+  updatedAt String?
+}
+
+model TaskStageAggregateGroupByCreatedAtArgs {
+  id String  @id @default(uuid())
+  by String?
+}
+
+model TaskStageAggregateGroupByUpdatedAtArgs {
+  id String  @id @default(uuid())
+  by String?
+}
+
+model TaskStageAggregateResponse {
+  id      String  @id @default(uuid())
+  avg     String?
+  count   String?
+  groupBy String?
+  max     String?
+  min     String?
+  sum     String?
+}
+
+model TaskStageAvgAggregate {
+  id String @id
+}
+
+model TaskStageConnection {
+  id         String @id @default(uuid())
+  nodes      String
+  pageInfo   String
+  totalCount String
+}
+
+model TaskStageCountAggregate {
+  createdAt String?
+  id        String  @id
+  title     String?
+  updatedAt String?
+}
+
+model TaskStageCreateInput {
+  id    String @id @default(uuid())
+  title String
+}
+
+model TaskStageDeleteFilter {
+  and       String?
+  createdAt String?
+  id        String  @id
+  or        String?
+  title     String?
+  updatedAt String?
+}
+
+model TaskStageDeleteResponse {
+  createdAt String?
+  id        String  @id
+  title     String?
+  updatedAt String?
+}
+
+model TaskStageFilter {
+  and       String?
+  createdAt String?
+  createdBy String?
+  id        String  @id
+  or        String?
+  title     String?
+  updatedAt String?
+  updatedBy String?
+}
+
+model TaskStageFilterUserFilter {
+  and       String?
+  createdAt String?
+  email     String?
+  id        String  @id
+  jobTitle  String?
+  name      String?
+  or        String?
+  phone     String?
+  role      String?
+  timezone  String?
+  updatedAt String?
+}
+
+model TaskStageMaxAggregate {
+  createdAt String?
+  id        String  @id
+  title     String?
+  updatedAt String?
+}
+
+model TaskStageMinAggregate {
+  createdAt String?
+  id        String  @id
+  title     String?
+  updatedAt String?
+}
+
+model TaskStageSort {
+  id        String  @id @default(uuid())
+  direction String
+  field     String
+  nulls     String?
+}
+
+model TaskStageSubscriptionFilter {
+  and       String?
+  createdAt String?
+  id        String  @id
+  or        String?
+  title     String?
+  updatedAt String?
+}
+
+model TaskStageSumAggregate {
+  id String @id
+}
+
+model TaskStageTasksAggregateGroupBy {
+  completed   String?
+  createdAt   String?
+  description String?
+  dueDate     String?
+  id          String  @id
+  stageId     String?
+  title       String?
+  updatedAt   String?
+}
+
+model TaskStageTasksAggregateResponse {
+  id      String  @id @default(uuid())
+  avg     String?
+  count   String?
+  groupBy String?
+  max     String?
+  min     String?
+  sum     String?
+}
+
+model TaskStageTasksAvgAggregate {
+  id      String  @id
+  stageId String?
+}
+
+model TaskStageTasksCountAggregate {
+  completed   String?
+  createdAt   String?
+  description String?
+  dueDate     String?
+  id          String  @id
+  stageId     String?
+  title       String?
+  updatedAt   String?
+}
+
+model TaskStageTasksMaxAggregate {
+  createdAt   String?
+  description String?
+  dueDate     String?
+  id          String  @id
+  stageId     String?
+  title       String?
+  updatedAt   String?
+}
+
+model TaskStageTasksMinAggregate {
+  createdAt   String?
+  description String?
+  dueDate     String?
+  id          String  @id
+  stageId     String?
+  title       String?
+  updatedAt   String?
+}
+
+model TaskStageTasksSumAggregate {
+  id      String  @id
+  stageId String?
+}
+
+model TaskStageUpdateFilter {
+  and       String?
+  createdAt String?
+  id        String  @id
+  or        String?
+  title     String?
+  updatedAt String?
+}
+
+model TaskStageUpdateInput {
+  id    String @id @default(uuid())
+  title String
+}
+
+model TaskSubscriptionFilter {
+  and         String?
+  completed   String?
+  createdAt   String?
+  description String?
+  dueDate     String?
+  id          String  @id
+  or          String?
+  stageId     String?
+  title       String?
+  updatedAt   String?
+}
+
+model TaskSumAggregate {
+  id      String  @id
+  stageId String?
+}
+
+model TaskUpdateFilter {
+  and         String?
+  completed   String?
+  createdAt   String?
+  description String?
+  dueDate     String?
+  id          String  @id
+  or          String?
+  stageId     String?
+  title       String?
+  updatedAt   String?
+}
+
+model TaskUpdateInput {
+  id          String  @id @default(uuid())
+  checklist   String?
+  completed   String?
+  description String?
+  dueDate     String?
+  stageId     String?
+  title       String?
+  userIds     String?
+}
+
+model TaskUsersAggregateGroupBy {
+  createdAt String?
+  email     String?
+  id        String  @id
+  jobTitle  String?
+  name      String?
+  phone     String?
+  role      String?
+  timezone  String?
+  updatedAt String?
+}
+
+model TaskUsersAggregateResponse {
+  id      String  @id @default(uuid())
+  avg     String?
+  count   String?
+  groupBy String?
+  max     String?
+  min     String?
+  sum     String?
+}
+
+model TaskUsersAvgAggregate {
+  id String @id
+}
+
+model TaskUsersCountAggregate {
+  createdAt String?
+  email     String?
+  id        String  @id
+  jobTitle  String?
+  name      String?
+  phone     String?
+  role      String?
+  timezone  String?
+  updatedAt String?
+}
+
+model TaskUsersMaxAggregate {
+  createdAt String?
+  email     String?
+  id        String  @id
+  jobTitle  String?
+  name      String?
+  phone     String?
+  role      String?
+  timezone  String?
+  updatedAt String?
+}
+
+model TaskUsersMinAggregate {
+  createdAt String?
+  email     String?
+  id        String  @id
+  jobTitle  String?
+  name      String?
+  phone     String?
+  role      String?
+  timezone  String?
+  updatedAt String?
+}
+
+model TaskUsersSumAggregate {
+  id String @id
+}
+
+model UpdateManyCompaniesInput {
+  id     String @id @default(uuid())
+  filter String
+  update String
+}
+
+model UpdateManyCompanyNotesInput {
+  id     String @id @default(uuid())
+  filter String
+  update String
+}
+
+model UpdateManyContactNotesInput {
+  id     String @id @default(uuid())
+  filter String
+  update String
+}
+
+model UpdateManyContactsInput {
+  id     String @id @default(uuid())
+  filter String
+  update String
+}
+
+model UpdateManyDealStagesInput {
+  id     String @id @default(uuid())
+  filter String
+  update String
+}
+
+model UpdateManyDealsInput {
+  id     String @id @default(uuid())
+  filter String
+  update String
+}
+
+model UpdateManyEventCategoriesInput {
+  id     String @id @default(uuid())
+  filter String
+  update String
+}
+
+model UpdateManyEventsInput {
+  id     String @id @default(uuid())
+  filter String
+  update String
+}
+
+model UpdateManyQuotesInput {
+  id     String @id @default(uuid())
+  filter String
+  update String
+}
+
+model UpdateManyResponse {
+  id           String @id @default(uuid())
+  updatedCount String
+}
+
+model UpdateManyTaskCommentsInput {
+  id     String @id @default(uuid())
+  filter String
+  update String
+}
+
+model UpdateManyTaskStagesInput {
+  id     String @id @default(uuid())
+  filter String
+  update String
+}
+
+model UpdateManyTasksInput {
+  id     String @id @default(uuid())
+  filter String
+  update String
+}
+
+model UpdateManyUsersInput {
+  id     String @id @default(uuid())
+  filter String
+  update String
+}
+
+model UpdateOneAuditSubscriptionFilterInput {
+  id     String @id @default(uuid())
+  filter String
+}
+
+model UpdateOneCompanyInput {
+  id     String @id
+  update String
+}
+
+model UpdateOneCompanyNoteInput {
+  id     String @id
+  update String
+}
+
+model UpdateOneCompanyNoteSubscriptionFilterInput {
+  id     String @id @default(uuid())
+  filter String
+}
+
+model UpdateOneCompanySubscriptionFilterInput {
+  id     String @id @default(uuid())
+  filter String
+}
+
+model UpdateOneContactInput {
+  id     String @id
+  update String
+}
+
+model UpdateOneContactNoteInput {
+  id     String @id
+  update String
+}
+
+model UpdateOneContactNoteSubscriptionFilterInput {
+  id     String @id @default(uuid())
+  filter String
+}
+
+model UpdateOneContactSubscriptionFilterInput {
+  id     String @id @default(uuid())
+  filter String
+}
+
+model UpdateOneDealInput {
+  id     String @id
+  update String
+}
+
+model UpdateOneDealStageInput {
+  id     String @id
+  update String
+}
+
+model UpdateOneDealStageSubscriptionFilterInput {
+  id     String @id @default(uuid())
+  filter String
+}
+
+model UpdateOneDealSubscriptionFilterInput {
+  id     String @id @default(uuid())
+  filter String
+}
+
+model UpdateOneEventCategoryInput {
+  id     String @id
+  update String
+}
+
+model UpdateOneEventCategorySubscriptionFilterInput {
+  id     String @id @default(uuid())
+  filter String
+}
+
+model UpdateOneEventInput {
+  id     String @id
+  update String
+}
+
+model UpdateOneEventSubscriptionFilterInput {
+  id     String @id @default(uuid())
+  filter String
+}
+
+model UpdateOneQuoteInput {
+  id     String @id
+  update String
+}
+
+model UpdateOneQuoteSubscriptionFilterInput {
+  id     String @id @default(uuid())
+  filter String
+}
+
+model UpdateOneTaskCommentInput {
+  id     String @id
+  update String
+}
+
+model UpdateOneTaskCommentSubscriptionFilterInput {
+  id     String @id @default(uuid())
+  filter String
+}
+
+model UpdateOneTaskInput {
+  id     String @id
+  update String
+}
+
+model UpdateOneTaskStageInput {
+  id     String @id
+  update String
+}
+
+model UpdateOneTaskStageSubscriptionFilterInput {
+  id     String @id @default(uuid())
+  filter String
+}
+
+model UpdateOneTaskSubscriptionFilterInput {
+  id     String @id @default(uuid())
+  filter String
+}
+
+model UpdateOneUserInput {
+  id     String @id
+  update String
+}
+
+model UpdateOneUserSubscriptionFilterInput {
+  id     String @id @default(uuid())
+  filter String
+}
+
+model User {
+  avatarUrl String?
+  companies String
+  contacts  String
+  createdAt String
+  createdBy String?
+  deals     String
+  email     String
+  events    String
+  id        String  @id
+  jobTitle  String?
+  name      String
+  phone     String?
+  role      String
+  tasks     String
+  timezone  String?
+  updatedAt String
+  updatedBy String?
+}
+
+model UserCompaniesArgs {
+  id      String  @id @default(uuid())
+  filter  String?
+  paging  String?
+  sorting String?
+}
+
+model UserContactsArgs {
+  id      String  @id @default(uuid())
+  filter  String?
+  paging  String?
+  sorting String?
+}
+
+model UserDealsArgs {
+  id      String  @id @default(uuid())
+  filter  String?
+  paging  String?
+  sorting String?
+}
+
+model UserEventsArgs {
+  id      String  @id @default(uuid())
+  filter  String?
+  paging  String?
+  sorting String?
+}
+
+model UserTasksArgs {
+  id      String  @id @default(uuid())
+  filter  String?
+  paging  String?
+  sorting String?
+}
+
+model UserAggregateFilter {
+  and       String?
+  createdAt String?
+  email     String?
+  id        String  @id
+  jobTitle  String?
+  name      String?
+  or        String?
+  phone     String?
+  role      String?
+  timezone  String?
+  updatedAt String?
+}
+
+model UserCompaniesConnection {
+  id         String @id @default(uuid())
+  nodes      String
+  pageInfo   String
+  totalCount String
+}
+
+model UserConnection {
+  id         String @id @default(uuid())
+  nodes      String
+  pageInfo   String
+  totalCount String
+}
+
+model UserContactsConnection {
+  id         String @id @default(uuid())
+  nodes      String
+  pageInfo   String
+  totalCount String
+}
+
+model UserCreateInput {
+  id       String @id @default(uuid())
+  email    String
+  jobTitle String
+  name     String
+  phone    String
+  role     String
+  timezone String
+}
+
+model UserDealsConnection {
+  id         String @id @default(uuid())
+  nodes      String
+  pageInfo   String
+  totalCount String
+}
+
+model UserDeleteFilter {
+  and       String?
+  createdAt String?
+  email     String?
+  id        String  @id
+  jobTitle  String?
+  name      String?
+  or        String?
+  phone     String?
+  role      String?
+  timezone  String?
+  updatedAt String?
+}
+
+model UserDeleteResponse {
+  avatarUrl String?
+  createdAt String?
+  email     String?
+  id        String  @id
+  jobTitle  String?
+  name      String?
+  phone     String?
+  role      String?
+  timezone  String?
+  updatedAt String?
+}
+
+model UserEventsConnection {
+  id         String @id @default(uuid())
+  nodes      String
+  pageInfo   String
+  totalCount String
+}
+
+model UserFilter {
+  and       String?
+  companies String?
+  contacts  String?
+  createdAt String?
+  createdBy String?
+  deals     String?
+  email     String?
+  events    String?
+  id        String  @id
+  jobTitle  String?
+  name      String?
+  or        String?
+  phone     String?
+  role      String?
+  tasks     String?
+  timezone  String?
+  updatedAt String?
+  updatedBy String?
+}
+
+model UserFilterCompanyFilter {
+  and          String?
+  businessType String?
+  companySize  String?
+  country      String?
+  createdAt    String?
+  id           String  @id
+  industry     String?
+  name         String?
+  or           String?
+  totalRevenue String?
+  updatedAt    String?
+  website      String?
+}
+
+model UserFilterContactFilter {
+  and       String?
+  createdAt String?
+  email     String?
+  id        String  @id
+  jobTitle  String?
+  name      String?
+  or        String?
+  phone     String?
+  score     String?
+  stage     String?
+  status    String?
+  timezone  String?
+  updatedAt String?
+}
+
+model UserFilterDealFilter {
+  and            String?
+  closeDateDay   String?
+  closeDateMonth String?
+  closeDateYear  String?
+  companyId      String?
+  createdAt      String?
+  dealOwnerId    String?
+  id             String  @id
+  or             String?
+  stageId        String?
+  title          String?
+  updatedAt      String?
+  value          String?
+}
+
+model UserFilterEventFilter {
+  and         String?
+  createdAt   String?
+  description String?
+  endDate     String?
+  id          String  @id
+  or          String?
+  startDate   String?
+  title       String?
+  updatedAt   String?
+}
+
+model UserFilterTaskFilter {
+  and         String?
+  completed   String?
+  createdAt   String?
+  description String?
+  dueDate     String?
+  id          String  @id
+  or          String?
+  stageId     String?
+  title       String?
+  updatedAt   String?
+}
+
+model UserFilterUserFilter {
+  and       String?
+  createdAt String?
+  email     String?
+  id        String  @id
+  jobTitle  String?
+  name      String?
+  or        String?
+  phone     String?
+  role      String?
+  timezone  String?
+  updatedAt String?
+}
+
+model UserRoleFilterComparison {
+  id    String  @id @default(uuid())
+  eq    String?
+  in    String?
+  neq   String?
+  notIn String?
+}
+
+model UserSort {
+  id        String  @id @default(uuid())
+  direction String
+  field     String
+  nulls     String?
+}
+
+model UserSubscriptionFilter {
+  and       String?
+  createdAt String?
+  email     String?
+  id        String  @id
+  jobTitle  String?
+  name      String?
+  or        String?
+  phone     String?
+  role      String?
+  timezone  String?
+  updatedAt String?
+}
+
+model UserTasksConnection {
+  id         String @id @default(uuid())
+  nodes      String
+  pageInfo   String
+  totalCount String
+}
+
+model UserUpdateFilter {
+  and       String?
+  createdAt String?
+  email     String?
+  id        String  @id
+  jobTitle  String?
+  name      String?
+  or        String?
+  phone     String?
+  role      String?
+  timezone  String?
+  updatedAt String?
+}
+
+model UserUpdateInput {
+  id       String  @id @default(uuid())
+  email    String?
+  jobTitle String?
+  name     String?
+  phone    String?
+  role     String?
+  timezone String?
+}

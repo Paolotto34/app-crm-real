@@ -439,76 +439,76 @@ export type CompaniesTableQuery = {
 };
 
 export type ContactsCreateContactNoteMutationVariables = Types.Exact<{
-  input: Types.CreateOneContactNoteInput;
+put: Types.CreateOneContactNoteInput;
 }>;
 
 export type ContactsCreateContactNoteMutation = {
-  createOneContactNote: Pick<Types.ContactNote, "id" | "note">;
+eateOneContactNote: Pick<Types.ContactNote, "id" | "note">;
 };
 
 export type ContactsUpdateContactNoteMutationVariables = Types.Exact<{
-  input: Types.UpdateOneContactNoteInput;
+put: Types.UpdateOneContactNoteInput;
 }>;
 
 export type ContactsUpdateContactNoteMutation = {
-  updateOneContactNote: Pick<Types.ContactNote, "id" | "note">;
+dateOneContactNote: Pick<Types.ContactNote, "id" | "note">;
 };
 
 export type ContactsContactNotesListQueryVariables = Types.Exact<{
-  filter: Types.ContactNoteFilter;
-  sorting?: Types.InputMaybe<
-    Array<Types.ContactNoteSort> | Types.ContactNoteSort
-  >;
-  paging: Types.OffsetPaging;
+lter: Types.ContactNoteFilter;
+rting?: Types.InputMaybe<
+Array<Types.ContactNoteSort> | Types.ContactNoteSort
+
+ging: Types.OffsetPaging;
 }>;
 
 export type ContactsContactNotesListQuery = {
-  contactNotes: Pick<Types.ContactNoteConnection, "totalCount"> & {
-    nodes: Array<
-      Pick<Types.ContactNote, "id" | "note" | "createdAt"> & {
-        createdBy: Pick<Types.User, "id" | "name" | "avatarUrl">;
-      }
-    >;
-  };
+ntactNotes: Pick<Types.ContactNoteConnection, "totalCount"> & {
+nodes: Array<
+ck<Types.ContactNote, "id" | "note" | "createdAt"> & {
+createdBy: Pick<Types.User, "id" | "name" | "avatarUrl">;
+
+>;
+
 };
 
 export type ContactsListQueryVariables = Types.Exact<{
-  filter: Types.ContactFilter;
-  sorting?: Types.InputMaybe<Array<Types.ContactSort> | Types.ContactSort>;
-  paging: Types.OffsetPaging;
+lter: Types.ContactFilter;
+rting?: Types.InputMaybe<Array<Types.ContactSort> | Types.ContactSort>;
+ging: Types.OffsetPaging;
 }>;
 
 export type ContactsListQuery = {
-  contacts: Pick<Types.ContactConnection, "totalCount"> & {
-    nodes: Array<
-      Pick<
-        Types.Contact,
-        "id" | "name" | "email" | "jobTitle" | "status" | "avatarUrl"
-      > & { company: Pick<Types.Company, "id" | "name" | "avatarUrl"> }
-    >;
-  };
+ntacts: Pick<Types.ContactConnection, "totalCount"> & {
+nodes: Array<
+ck<
+Types.Contact,
+"id" | "name" | "email" | "jobTitle" | "status" | "avatarUrl"
+& { company: Pick<Types.Company, "id" | "name" | "avatarUrl"> }
+>;
+
 };
 
 export type ContactShowQueryVariables = Types.Exact<{
-  id: Types.Scalars["ID"]["input"];
+: Types.Scalars["ID"]["input"];
 }>;
 
 export type ContactShowQuery = {
-  contact: Pick<
-    Types.Contact,
-    | "id"
-    | "name"
-    | "email"
-    | "status"
-    | "jobTitle"
-    | "phone"
-    | "timezone"
-    | "avatarUrl"
-    | "createdAt"
-  > & {
-    company: Pick<Types.Company, "id" | "name" | "avatarUrl">;
-    salesOwner: Pick<Types.User, "id" | "name" | "avatarUrl">;
-  };
+ntact: Pick<
+Types.Contact,
+| "id"
+| "name"
+| "email"
+| "status"
+| "jobTitle"
+| "phone"
+| "timezone"
+| "avatarUrl"
+| "createdAt"
+& {
+company: Pick<Types.Company, "id" | "name" | "avatarUrl">;
+salesOwner: Pick<Types.User, "id" | "name" | "avatarUrl">;
+
 };
 
 export type LatestActivitiesDealsQueryVariables = Types.Exact<{
